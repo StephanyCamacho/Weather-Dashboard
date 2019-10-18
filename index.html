@@ -17,20 +17,16 @@
     <div class="row">
         <div class="col-4-sm searchArea">
             <h3>Search for a City:</h3>
+            <span id="error"></span>
             <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button type="button" class="btn btn-primary"type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" id="city" placeholder="Search" aria-label="Search">
+                <button type="button" id="submitCity" class="btn btn-primary"type="submit">Search</button>
             </form>
+            <div class="city-list"></div>
         </div>
         <div class="col-8-sm currentCondition">
             <div class="card">
-                <div class="card-body">
-                    <h2 class="City">Atlanta</h2>
-                    <p class="Temperature">Temperature</p>
-                    <p class="Humidity">Humidity</p>
-                    <p class="Windspeed">Windspeed</p>
-                    <p class="UV">UV Index</p>
-                </div>
+                <div id="show" class="card-body"></div>
             </div> 
         </div>
     </div>
