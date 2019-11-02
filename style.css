@@ -8,10 +8,13 @@ h1{
 .searchArea{
     margin-left: 30px;
 }
-.card{
-    margin-left: 30px; 
+#show{
+    background-color: white;
+    color: black;
 }
-#5-day{
-background-color: blue;
-color: white;
+.card{
+    margin-left: 30px;
+    border-radius: 10px;
+    background-color: #007bff;
+    color: white;
 }

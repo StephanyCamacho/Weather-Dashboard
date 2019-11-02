@@ -10,7 +10,7 @@ function displayCities(cityList) {
     $('.city-list').empty();
     var list = localStorage.getItem("cityList");
     console.log(list);
-    // cityList = (JSON.parse(list)); 
+    cityList = (JSON.parse(list)); 
     // returning as a string, find javascript function to parse cityList
     if (list) {
         for (var i = 0; i < cityList.length; i++) {
@@ -47,12 +47,14 @@ function showForecast(data) {
             var humidity = main.humidity;
             var date = moment(currentObject.dt_txt).format('l'); // TODO: Use MomentJS to convert
             var icon = currentObject.weather[0].icon;
+            var iconurl = "https://openweathermap.org/img/w/" + icon + ".png";
 
             let htmlTemplate = `
             <div class="col currentCondition">
             <div class="card">
                 <div class="card-body 5-day">
                     <h5>${date}</h5>
+                    <div><img src=${iconurl} /></div>
                     <p>Temperature: ${temp} °F</p>
                     <p>Humidity: ${humidity}%</p>
                 </div>
@@ -83,8 +85,13 @@ function showForecast(data) {
 
 // METHODS
 $(document).ready(function () {
-
-    var cityList = [];
+    var stored = localStorage.getItem("cityList")
+    if (stored){
+        cityList = JSON.parse(stored)
+    }else{
+        cityList = []
+    }
+    //var cityList = [];
     $('#submitCity').click(function (event) {
         event.preventDefault();
         var city = $('#city').val();
