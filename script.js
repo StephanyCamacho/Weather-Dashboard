@@ -1,7 +1,7 @@
 // FUNCTIONS
 function show(data) {
     return "<h2>" + data.name + moment().format(' (MM/DD/YYYY)') + "</h2>" +
-        "<p><strong>Temperature</strong>: " + data.main.temp + "F" + '</p>' +
+        "<p><strong>Temperature</strong>: " + data.main.temp + " °F" + '</p>' +
         "<p><strong>Humidity</strong>: " + data.main.humidity + "%" + '</p>' +
         "<p><strong>Wind Speed</strong>: " + data.wind.speed + "MPH" + '</p>';
 }
@@ -45,16 +45,16 @@ function showForecast(data) {
             // Store each of these in variables
             var temp = main.temp; // TODO: Convert to F
             var humidity = main.humidity;
-            var date = currentObject.dt_txt; // TODO: Use MomentJS to convert
+            var date = moment(currentObject.dt_txt).format('l'); // TODO: Use MomentJS to convert
             var icon = currentObject.weather[0].icon;
 
             let htmlTemplate = `
             <div class="col currentCondition">
             <div class="card">
                 <div class="card-body 5-day">
-                    <h3>${date}</h3>
-                    <p>Temperature: ${temp}</p>
-                    <p>Humidity: ${humidity}</p>
+                    <h5>${date}</h5>
+                    <p>Temperature: ${temp} °F</p>
+                    <p>Humidity: ${humidity}%</p>
                 </div>
             </div> 
         </div>`;
@@ -105,7 +105,7 @@ $(document).ready(function () {
             });
 
             $.ajax({
-                url: 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + "&APPID=5650ba04d76cc8ddc64d65a07cda4c4a",
+                url: 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + "&units=imperial" + "&APPID=5650ba04d76cc8ddc64d65a07cda4c4a",
                 type: "GET",
                 success: function (data) {
                     console.log("forecast data", data);
