@@ -98,7 +98,7 @@ $(document).ready(function () {
         if (city != '') {
 
             $.ajax({
-                url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + "&units=imperial" + "&APPID=5650ba04d76cc8ddc64d65a07cda4c4a",
+                url: 'https://api.openweathermap.org/data/2.5/weather?q=' + city + "&units=imperial" + "&APPID=5650ba04d76cc8ddc64d65a07cda4c4a",
                 type: "GET",
                 success: function (data) {
                     var display = show(data);
@@ -107,7 +107,7 @@ $(document).ready(function () {
             });
 
             $.ajax({
-                url: 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + "&units=imperial" + "&APPID=5650ba04d76cc8ddc64d65a07cda4c4a",
+                url: 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + "&units=imperial" + "&APPID=5650ba04d76cc8ddc64d65a07cda4c4a",
                 type: "GET",
                 success: function (data) {
                     var forecastDisplay = showForecast(data)
