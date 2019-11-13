@@ -1,14 +1,21 @@
 $(document).ready(function () {
-    
+
     // FUNCTIONS
     function show(data) {
         return "<h2>" + data.name + moment().format(' (MM/DD/YYYY)') + "</h2>" +
             `
-
-    <p><strong>Temperature</strong>: ${data.main.temp} °F</p>
-    <p><strong>Humidity</strong>: ${data.main.humidity}%</p>
-    <p><strong>Wind Speed</strong>: ${data.wind.speed} MPH</p>
-    `
+        <p><strong>Temperature</strong>: ${data.main.temp} °F</p>
+        <p><strong>Humidity</strong>: ${data.main.humidity}%</p>
+        <p><strong>Wind Speed</strong>: ${data.wind.speed} MPH</p>
+        `
+    }
+    function showUV(data) {
+        var lat = data.coord.lat;
+        var lon = data.coord.lon;
+        console.log(uvDisplay);
+        return `
+        <p><strong>UV Index:</strong>:${data.value}</p>
+        `
     }
 
     function displayCities(cityList) {
@@ -89,6 +96,7 @@ $(document).ready(function () {
         // check length of array. if > 5 then don't add.
         displayCities(cityList);
         if (city != '') {
+
             $.ajax({
                 url: 'http://api.openweathermap.org/data/2.5/weather?q=' + city + "&units=imperial" + "&APPID=5650ba04d76cc8ddc64d65a07cda4c4a",
                 type: "GET",
@@ -106,6 +114,15 @@ $(document).ready(function () {
                     // add to page
                 }
             });
+           
+            $.ajax({
+                url: 'https://api.openweathermap.org/data/2.5/uvi?appid=' + "&APPID=5650ba04d76cc8ddc64d65a07cda4c4a" + "&lat=" + lat + "&lon=" + lon,
+                type: "GET",
+                sucess: function (data) {
+                    var uvDisplay = showUV(data);
+                    console.log(uvDisplay, "uvDisplay");
+                }
+            })
 
         } else {
             $('#error').html('Please insert a city name:');
