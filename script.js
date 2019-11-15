@@ -122,7 +122,7 @@ $(document).ready(function () {
                     var uvDisplay = showUV(data);
                     console.log(uvDisplay, "uvDisplay");
                 }
-            })
+            });
 
         } else {
             $('#error').html('Please insert a city name:');
